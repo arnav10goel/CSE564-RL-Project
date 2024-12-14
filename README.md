@@ -7,6 +7,22 @@
   <a href="https://drive.google.com/drive/folders/1XjpcfOm0NafPYFPnNtoHfhJ4nHVkQSB1">Dataset (Google Drive)</a>
 </b></p>
 
+This repository is a reproduction and further analysis of the paper: **Learning to Act without Actions**. It is done as part of our course project for the Reinforcement Learning course at IIIT-Delhi in Monsoon 2024. All credit for the code goes to the authors, please consider citing them:
+
+> [Dominik Schmidt, Minqi Jiang.<br/>
+> **Learning to Act without Actions**<br/>
+> *https://arxiv.org/abs/2312.10812*](https://arxiv.org/abs/2312.10812)
+
+
+```
+@inproceedings{lapo,
+  title={Learning to Act without Actions},
+  author={Schmidt, Dominik and Jiang, Minqi},
+  booktitle={The Twelfth International Conference on Learning Representations (ICLR)},
+  year={2024}
+}
+```
+
 ## Overview
 
 Pre-training large models on vast amounts of web data has proven to be an effective approach for obtaining powerful, general models in domains such as language and vision. However, this paradigm has not yet taken hold in reinforcement learning. This is because videos, the most abundant form of embodied behavioral data on the web, lack the action labels required by existing methods for imitating behavior from demonstrations. We introduce **Latent Action Policies** (LAPO), a method for recovering latent action information—and thereby latent-action policies, world models, and inverse dynamics models—purely from videos. LAPO is the first method able to recover the structure of the true action space just from observed dynamics, even in challenging procedurally-generated environments. LAPO enables training latent-action policies that can be rapidly fine-tuned into expert-level policies, either offline using a small action-labeled dataset, or online with rewards. LAPO takes a first step towards pre-training powerful, generalist policies and world models on the vast amounts of videos readily available on the web.
@@ -79,21 +95,9 @@ bash launch.sh
 > - **Logging:** The easiest way to look at the results is via [wandb](https://github.com/wandb/wandb): the project will log the results to your `lapo_stage1`, `lapo_stage1`, and `lapo_stage2` projects.
 > - **Memory usage:** By default the code loads ~2.5M frames of expert data (80 chunks * 32k frames). This requires about 40GB of host memory. You can change `MAX_DATA_CHUNKS` in `paths.py` to configure this.  
 > - **Runtime:** The expected runtime per task on a GPU is roughly 1 hour per stage.
+>
 
-## Citation
+## Our Analysis
+- We assess the generalization capabilities of the learnt latent policy to action spaces belonging to different observation distributions. We present the experiment codes in the `lapo-generalization-experiments` directory.
+- We additionally perform a joint pre-training to assess the robustness of generalization and provide codes to reproduce plots.
 
-If you are using LAPO, please consider citing our paper:
-
-> [Dominik Schmidt, Minqi Jiang.<br/>
-> **Learning to Act without Actions**<br/>
-> *https://arxiv.org/abs/2312.10812*](https://arxiv.org/abs/2312.10812)
-
-
-```
-@inproceedings{lapo,
-  title={Learning to Act without Actions},
-  author={Schmidt, Dominik and Jiang, Minqi},
-  booktitle={The Twelfth International Conference on Learning Representations (ICLR)},
-  year={2024}
-}
-```
